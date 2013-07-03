@@ -1,6 +1,4 @@
 ActiveAdmin.register ResolutionGroup do
-  menu :parent => "Resolutions"  
-
   show do
     attributes_table :name
       panel "Resolutions" do

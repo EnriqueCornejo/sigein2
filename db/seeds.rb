@@ -158,3 +158,10 @@ ManagementObject.all.each do |obj|
     :magnitude_method => MagnitudeMethod.find_by_name("Segundo método")
     })
 end
+
+puts "Generando reglas"
+
+Rule.create([
+  {:name => "Primera regla"},
+  {:name => "Segunda regla"}
+])
