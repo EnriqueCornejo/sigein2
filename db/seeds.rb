@@ -119,3 +119,20 @@ ManagementObject.all.each do |obj|
     })
 end
 
+puts "Generando Resoluciones y Grupos de Resolución"
+
+ResolutionGroup.create([
+  {:name => "Primero"},
+  {:name => "Segundo"},
+  {:name => "Tercero"}
+])
+
+ResolutionGroup.all.each do |rg|
+  (1..5).each do |n|
+    Resolution.create ({
+      :name => "Resolution #{n}",
+      :resolution_group => rg,
+      :resolution => Random.rand
+      })
+  end
+end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130703095916) do
+ActiveRecord::Schema.define(:version => 20130703101751) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -48,9 +48,10 @@ ActiveRecord::Schema.define(:version => 20130703095916) do
 
   create_table "magnitude_methods", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
     t.text     "description"
+    t.integer  "resolution_group_id"
   end
 
   create_table "magnitudes", :force => true do |t|
@@ -73,6 +74,20 @@ ActiveRecord::Schema.define(:version => 20130703095916) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "resolution_groups", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "resolutions", :force => true do |t|
+    t.string   "name"
+    t.float    "resolution"
+    t.integer  "resolution_group_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "units", :force => true do |t|
