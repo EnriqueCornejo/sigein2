@@ -109,16 +109,6 @@ Unit.create([
   {:name => "Degrees"}
 ])
 
-puts "Generando Magnitudes"
-
-ManagementObject.all.each do |obj|
-  Magnitude.create({
-    :name => "Mg 1 de #{obj}",
-    :management_object => obj,
-    :unit => Unit.first
-    })
-end
-
 puts "Generando Resoluciones y Grupos de Resolución"
 
 ResolutionGroup.create([
@@ -135,4 +125,36 @@ ResolutionGroup.all.each do |rg|
       :resolution => Random.rand
       })
   end
+end
+
+puts "Generando Métodos"
+
+MagnitudeMethod.create([
+  {
+    :resolution_group_id => ResolutionGroup.find_by_name("Primero").id,
+    :name => "Primer método",
+    :description => "Descripción del primer método"
+  },
+  {
+    :resolution_group_id => ResolutionGroup.find_by_name("Segundo").id,
+    :name => "Segundo método",
+    :description => "Descripción del segundo método"
+  }
+])
+
+puts "Generando Magnitudes"
+
+ManagementObject.all.each do |obj|
+  Magnitude.create({
+    :name => "Mg 1 de #{obj}",
+    :management_object => obj,
+    :unit => Unit.first,
+    :magnitude_method => MagnitudeMethod.find_by_name("Primer método")
+    })
+  Magnitude.create({
+    :name => "Mg 2 de #{obj}",
+    :management_object => obj,
+    :unit => Unit.first,
+    :magnitude_method => MagnitudeMethod.find_by_name("Segundo método")
+    })
 end

@@ -5,7 +5,7 @@ class ManagementObject < ActiveRecord::Base
   validates_presence_of :object_type
 
   belongs_to :object_type
-  has_many :magnitudes
+  has_many :magnitudes, :dependent => :destroy
 
   accepts_nested_attributes_for :magnitudes
 

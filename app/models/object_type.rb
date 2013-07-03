@@ -3,5 +3,5 @@ class ObjectType < ActiveRecord::Base
 
   validates_presence_of :name
 
-  has_many :management_objects
+  has_many :management_objects, :dependent => :destroy
 end
