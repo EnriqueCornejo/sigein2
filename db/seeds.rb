@@ -100,3 +100,22 @@ ManagementObject.create([
 {:name => "Yavin", :object_type => ObjectType.find_by_name("Habitats")},
 {:name => "Yavin IV", :object_type => ObjectType.find_by_name("Habitats")}
 ])
+
+puts "Generando Unidades"
+
+Unit.create([
+  {:name => "Amount"},
+  {:name => "Kg"},
+  {:name => "Degrees"}
+])
+
+puts "Generando Magnitudes"
+
+ManagementObject.all.each do |obj|
+  Magnitude.create({
+    :name => "Mg 1 de #{obj}",
+    :management_object => obj,
+    :unit => Unit.first
+    })
+end
+
