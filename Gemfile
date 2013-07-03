@@ -39,3 +39,5 @@ gem "meta_search",    '>= 1.1.0.pre'
 
 # To use debugger
 # gem 'debugger'
+
+gem 'paperclip', '~> 3.0'
