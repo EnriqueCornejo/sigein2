@@ -1,0 +1,2 @@
+class Specie < ManagementObject
+end

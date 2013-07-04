@@ -1,0 +1,2 @@
+class Habitat < ManagementObject
+end
