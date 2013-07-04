@@ -1,5 +1,5 @@
 class Rule < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :source
   attr_accessible :rule_values_attributes
 
   validates_presence_of :name

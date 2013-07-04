@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130703112447) do
+ActiveRecord::Schema.define(:version => 20130704165441) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -67,17 +67,13 @@ ActiveRecord::Schema.define(:version => 20130703112447) do
     t.string   "name"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
-    t.integer  "object_type_id"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-  end
-
-  create_table "object_types", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "type"
+    t.date     "date_of_purchase"
+    t.date     "amortization_date"
   end
 
   create_table "resolution_groups", :force => true do |t|
@@ -92,6 +88,29 @@ ActiveRecord::Schema.define(:version => 20130703112447) do
     t.integer  "resolution_group_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+  end
+
+  create_table "rule_values", :force => true do |t|
+    t.string   "category"
+    t.string   "categorical_value"
+    t.integer  "rule_id"
+    t.float    "numerical_value"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "rules", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "source"
+  end
+
+  create_table "tasks", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "units", :force => true do |t|

@@ -6,4 +6,8 @@ class ResolutionGroup < ActiveRecord::Base
   has_many :resolutions, :dependent => :destroy
 
   has_many :magnitude_methods
+
+  def to_s
+    "#{self.name}"
+  end
 end

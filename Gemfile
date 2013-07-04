@@ -41,3 +41,9 @@ gem "meta_search",    '>= 1.1.0.pre'
 # gem 'debugger'
 
 gem 'paperclip', '~> 3.0'
+
+group :development do
+  gem "better_errors"
+end
+
+gem 'binding_of_caller'

@@ -1,5 +1,5 @@
 class RuleValue < ActiveRecord::Base
-  attr_accessible :categorical_value, :category, :numerical_value, :rule_id
+  attr_accessible :categorical_value, :category, :numerical_value, :rule_id, :rule
 
   belongs_to :rule
 

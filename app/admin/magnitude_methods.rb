@@ -1,5 +1,5 @@
 ActiveAdmin.register MagnitudeMethod do
-  menu :parent => "Management Objects"  
+  menu :parent => "Magnitudes"
 
   show do
     attributes_table :name, :description, :resolution_group

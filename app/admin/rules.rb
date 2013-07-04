@@ -3,6 +3,7 @@ ActiveAdmin.register Rule do
   form do |f|
     f.inputs "Details" do
       f.input :name
+      f.input :source
       f.has_many :rule_values do |g|
         g.input :category
         g.input :categorical_value
@@ -15,6 +16,7 @@ ActiveAdmin.register Rule do
   show do
     attributes_table do
       row :name
+      row :source
     end
       panel "Values" do
       table_for rule.rule_values do
