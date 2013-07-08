@@ -14,6 +14,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Acciones habituales" do
           ul do
             li link_to("Inventario", admin_management_objects_path)
+            li link_to("Nuevo objeto", new_admin_management_object_path)
           end
         end
       end

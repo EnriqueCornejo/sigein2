@@ -113,10 +113,9 @@ ResolutionGroup.create([
 
 ResolutionGroup.all.each do |rg|
   (1..5).each do |n|
-    Resolution.create ({
-      :name => "Resolution #{n}",
-      :resolution_group => rg,
-      :resolution => Random.rand
+    ResolutionDimension.create ({
+      :name => "Dimension #{n} de #{rg}",
+      :resolution_group => rg
       })
   end
 end
