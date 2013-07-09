@@ -5,4 +5,6 @@ class ValorationCategory < ActiveRecord::Base
 
   has_many :object_categories, :dependent => :destroy
   has_many :management_objects, :through => :object_categories
+
+  has_many :rules
 end

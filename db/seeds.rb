@@ -279,23 +279,6 @@ ManagementObject.all.each do |obj|
     })
 end
 
-puts "Generando reglas"
-
-Rule.create([
-  {:name => "Primera regla"},
-  {:name => "Segunda regla"}
-])
-
-puts "Generando valores para las reglas"
-
-RuleValue.create([
-  {:category => "Extinto",                  :categorical_value => "EX", :numerical_value => 10, :rule => Rule.find_by_name("Primera regla")},
-  {:category => "En peligro de extinción",  :categorical_value => "PE", :numerical_value => 9,  :rule => Rule.find_by_name("Primera regla")},
-  {:category => "Amenazado",                :categorical_value => "A",  :numerical_value => 8,  :rule => Rule.find_by_name("Primera regla")},
-  {:category => "En peligro",               :categorical_value => "EP", :numerical_value => 6,  :rule => Rule.find_by_name("Segunda regla")},
-  {:category => "En peligro leve",          :categorical_value => "PL", :numerical_value => 4,  :rule => Rule.find_by_name("Segunda regla")}
-])
-
 puts "Generando categorías de valoración"
 
 ValorationCategory.create([
@@ -329,3 +312,21 @@ Habitat.all.each do |sp|
     :valoration_category => ValorationCategory.find_by_name("Habitats")
     })
 end
+
+puts "Generando reglas"
+
+Rule.create([
+  {:name => "Primera regla (especies)", :valoration_category => ValorationCategory.find_by_name("Species")},
+  {:name => "Segunda regla (pájaros)",  :valoration_category => ValorationCategory.find_by_name("Birds")},
+  {:name => "Tercera regla (habitats)", :valoration_category => ValorationCategory.find_by_name("Habitats")}
+])
+
+puts "Generando valores para las reglas"
+
+RuleValue.create([
+  {:category => "Extinto",                  :categorical_value => "EX", :numerical_value => 10, :rule => Rule.find_by_name("Primera regla")},
+  {:category => "En peligro de extinción",  :categorical_value => "PE", :numerical_value => 9,  :rule => Rule.find_by_name("Primera regla")},
+  {:category => "Amenazado",                :categorical_value => "A",  :numerical_value => 8,  :rule => Rule.find_by_name("Primera regla")},
+  {:category => "En peligro",               :categorical_value => "EP", :numerical_value => 6,  :rule => Rule.find_by_name("Segunda regla")},
+  {:category => "En peligro leve",          :categorical_value => "PL", :numerical_value => 4,  :rule => Rule.find_by_name("Segunda regla")}
+])
