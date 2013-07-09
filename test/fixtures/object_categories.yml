@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  management_object_id: 1
+  valoration_category_id: 1
+
+two:
+  management_object_id: 1
+  valoration_category_id: 1

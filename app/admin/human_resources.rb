@@ -22,6 +22,9 @@ ActiveAdmin.register HumanResource, {:sort_order => :name} do
         column "Name" do |magnitude|
           link_to(magnitude, admin_magnitude_path)
         end
+        column "Importance" do |magnitude|
+          magnitude.importance
+        end
         column "Method" do |magnitude|
           link_to(magnitude.magnitude_method, admin_magnitude_method_path(magnitude.magnitude_method.id))
         end

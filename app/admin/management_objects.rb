@@ -1,13 +1,31 @@
 ActiveAdmin.register ManagementObject, {:sort_order => :name} do
-  menu :parent => "Administration"
+  config.batch_actions = false
 
-  index do
-    selectable_column
-    column "Photo" do |obj|
-      link_to(image_tag(obj.photo.url(:thumb)), admin_management_object_path(obj))
+  filter :name
+  filter :type, :as => :select, :collection => {
+    "Species" => "Specie",
+    "Habitats" => "Habitat",
+    "Material Resources" => "MaterialResource",
+    "Human Resources" => "HumanResource"
+  }
+
+  # Mejor index as grid
+
+  index :as => :grid, :columns => 5 do |mo|
+    case mo.type
+      when "Specie"            then h3 link_to(mo, admin_species_path(mo.id))
+      when "Habitat"           then h3 link_to(mo, admin_habitat_path(mo.id))
+      when "HumanResource"     then h3 link_to(mo, admin_human_resource_path(mo.id))
+      when "MaterialResource"  then h3 link_to(mo, admin_material_resource_path(mo.id))
     end
-    column :name
-    default_actions
+    div do
+      case mo.type
+        when "Specie"            then link_to(image_tag(mo.photo.url(:thumb)), admin_species_path(mo.id))
+        when "Habitat"           then link_to(image_tag(mo.photo.url(:thumb)), admin_habitat_path(mo.id))
+        when "HumanResource"     then link_to(image_tag(mo.photo.url(:thumb)), admin_human_resource_path(mo.id))
+        when "MaterialResource"  then link_to(image_tag(mo.photo.url(:thumb)), admin_material_resource_path(mo.id))
+      end
+    end
   end
 
   show do

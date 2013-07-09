@@ -29,6 +29,9 @@ ActiveAdmin.register MaterialResource, {:sort_order => :name} do
         column "Method" do |magnitude|
           link_to(magnitude.magnitude_method, admin_magnitude_method_path(magnitude.magnitude_method.id))
         end
+        column "Resolution group" do |magnitude|
+          link_to(magnitude.magnitude_method.resolution_group, admin_resolution_group_path(magnitude.magnitude_method.resolution_group.id))
+        end
       end
     end
   end

@@ -199,6 +199,17 @@ MaterialResource.create([
   {name: "Infrared motion sensor (NiteSite infrared motion sensor)", date_of_purchase: Date.today, amortization_date: (Date.today + 365)}
 ])
 
+puts "Generando Recursos Humanos"
+
+HumanResource.create([
+  {name: "Luke Skywalker"},
+  {name: "Han Solo"},
+  {name: "Chewbacca"},
+  {name: "R2D2"},
+  {name: "C3PO"},
+  {name: "Darth Vader"}
+])
+
 puts "Generando Unidades"
 
 Unit.create([
@@ -216,10 +227,20 @@ ResolutionGroup.create([
 ])
 
 ResolutionGroup.all.each do |rg|
-  (1..5).each do |n|
+  (1..3).each do |n|
     ResolutionDimension.create ({
       :name => "Dimension #{n} de #{rg}",
       :resolution_group => rg
+      })
+  end
+end
+
+ResolutionDimension.all.each do |rd|
+  (1..5).each do |n|
+    Resolution.create({
+      :name => "Resolución #{n} de #{rd}",
+      :resolution => n * 0.2,
+      :resolution_dimension => rd
       })
   end
 end
@@ -246,13 +267,15 @@ ManagementObject.all.each do |obj|
     :name => "Mg 1 de #{obj}",
     :management_object => obj,
     :unit => Unit.first,
-    :magnitude_method => MagnitudeMethod.find_by_name("Primer método")
+    :magnitude_method => MagnitudeMethod.find_by_name("Primer método"),
+    :importance => 0.6
     })
   Magnitude.create({
     :name => "Mg 2 de #{obj}",
     :management_object => obj,
     :unit => Unit.first,
-    :magnitude_method => MagnitudeMethod.find_by_name("Segundo método")
+    :magnitude_method => MagnitudeMethod.find_by_name("Segundo método"),
+    :importance => 0.4
     })
 end
 
@@ -272,3 +295,37 @@ RuleValue.create([
   {:category => "En peligro",               :categorical_value => "EP", :numerical_value => 6,  :rule => Rule.find_by_name("Segunda regla")},
   {:category => "En peligro leve",          :categorical_value => "PL", :numerical_value => 4,  :rule => Rule.find_by_name("Segunda regla")}
 ])
+
+puts "Generando categorías de valoración"
+
+ValorationCategory.create([
+  {name: "Species"},
+  {name: "Habitats"},
+  {name: "Birds"},
+  {name: "Whales"},
+  {name: "Generic"}
+])
+
+puts "Asignando categorías a los objetos"
+
+Specie.all.each do |sp|
+  ObjectCategory.create({
+    :management_object => ManagementObject.find(sp.id),
+    :valoration_category => ValorationCategory.find_by_name("Species")
+    })
+end
+
+Specie.limit(10).each do |sp|
+  ObjectCategory.create({
+    :management_object => ManagementObject.find(sp.id),
+    :valoration_category => ValorationCategory.find_by_name("Birds")
+    })
+end
+
+
+Habitat.all.each do |sp|
+  ObjectCategory.create({
+    :management_object => ManagementObject.find(sp.id),
+    :valoration_category => ValorationCategory.find_by_name("Habitats")
+    })
+end
