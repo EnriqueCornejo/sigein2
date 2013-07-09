@@ -1,5 +1,5 @@
 class Resolution < ActiveRecord::Base
-  attr_accessible :name, :resolution, :resolution_group_id, :resolution_group
+  attr_accessible :name, :resolution, :resolution_dimension_id, :resolution_dimension
 
   belongs_to :resolution_dimension
 
